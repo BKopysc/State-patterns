@@ -3,7 +3,7 @@ import "./styles.css";
 import { DataSet } from "./data.js";
 import Station from "./Station";
 
-export class Form extends React.Component {
+export class Form2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
