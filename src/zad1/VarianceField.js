@@ -12,21 +12,20 @@ export default function VarianceField(props) {
   var calculate = () => {
     var val = props.actualValue - props.expected;
     if (val >= 0) {
-      //color = "normalValue";
       setColor("normalValue");
     } else {
       setColor("criticalValue");
-      //color = "criticalValue";
     }
   };
 
+  //view
   return (
     <Field
-      value={props.actualValue - props.expected || "-"}
-      editable={props.editable}
-      id={props.id}
+      value={props.actualValue - props.expected || "0"}
       label={props.label}
       className={color}
+      id={props.id}
+      editable={props.editable}
     />
   );
 }

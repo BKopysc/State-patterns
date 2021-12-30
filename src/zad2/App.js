@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { DataSet } from "./data.js";
+import { DataSet } from "./Model/data.js";
 import Station from "./Station";
 
 export class Form2 extends React.Component {

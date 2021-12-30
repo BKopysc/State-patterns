@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { DataSet } from "./data.js";
+import { DataSet } from "./Model/data.js";
 import Station from "./Station";
 
 export class Form extends React.Component {
@@ -38,21 +38,6 @@ export class Form extends React.Component {
       });
     }
   };
-
-  /* Droga Reacta...*/
-  // componentDidUpdate() {
-  //   // this.updateColor();
-  // }
-
-  // updateColor() {
-  //   var e = document.getElementById("input-expected");
-  //   var v = parseInt(e.value);
-  //   if (v >= 0) {
-  //     e.style.color = "black";
-  //   } else {
-  //     e.style.color = "red";
-  //   }
-  // }
 
   render() {
     return (

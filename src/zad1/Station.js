@@ -7,6 +7,7 @@ export default class Station extends React.Component {
     super(props);
   }
 
+  //view
   render() {
     var s = this.props.station;
     return (
@@ -25,12 +26,9 @@ export default class Station extends React.Component {
               }}
             />
             <VarianceField
-              id="input-expected"
               label="Różnica"
-              editable={false}
               expected={s.expected}
               actualValue={s.value}
-              //value={s.value - s.expected || "-"} /* Wartość domyślna: "-" */
             />
           </ul>
         </form>
