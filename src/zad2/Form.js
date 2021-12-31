@@ -12,6 +12,8 @@ export class Form2 extends React.Component {
     this.idFieldRef = React.createRef();
     this.dateFieldRef = React.createRef();
     this.expectedFieldRef = React.createRef();
+    this.valueFieldRef = React.createRef();
+    this.varianceFieldRef = React.createRef();
   }
 
   selected = (e) => {
@@ -24,8 +26,6 @@ export class Form2 extends React.Component {
         break;
       }
     }
-
-    //selected.idFieldRef.current.value = "test";
     this.setState({
       selected: selected
     });
@@ -36,12 +36,13 @@ export class Form2 extends React.Component {
       this.idFieldRef.current.value = s.name;
       this.dateFieldRef.current.value = s.date;
       this.expectedFieldRef.current.value = s.expected;
+      this.valueFieldRef.current.value = s.value;
+      this.varianceFieldRef.current.value = this.calculateVariance(
+        s.expected,
+        s.value
+      );
     });
   };
-
-  // componentDidMount(){
-  //   this.idFieldRef.current.value = "test";
-  // }
 
   onChangedValue = (station, v) => {
     if (this.state.selected && this.state.selected.id === station.id) {
@@ -54,23 +55,27 @@ export class Form2 extends React.Component {
         return state;
       });
     }
+
+    this.forceUpdate(() => {
+      let expected = this.expectedFieldRef.current.value;
+      let value = this.valueFieldRef.current.value;
+      this.varianceFieldRef.current.value = this.calculateVariance(
+        expected,
+        value
+      );
+    });
   };
 
-  componentDidUpdate() {}
-  /* Droga Reacta...*/
-  // componentDidUpdate() {
-  //   // this.updateColor();
-  // }
-
-  // updateColor() {
-  //   var e = document.getElementById("input-expected");
-  //   var v = parseInt(e.value);
-  //   if (v >= 0) {
-  //     e.style.color = "black";
-  //   } else {
-  //     e.style.color = "red";
-  //   }
-  // }
+  //zmiana koloru i obliczenie różnicy
+  calculateVariance(expected, value) {
+    let variance = value - expected;
+    if (variance < 0) {
+      this.varianceFieldRef.current.className = "criticalValue";
+    } else if (variance >= 0) {
+      this.varianceFieldRef.current.className = "normalValue";
+    }
+    return variance;
+  }
 
   render() {
     return (
@@ -102,7 +107,8 @@ export class Form2 extends React.Component {
                   idFieldRef={this.idFieldRef}
                   dateFieldRef={this.dateFieldRef}
                   expectedFieldRef={this.expectedFieldRef}
-                  label="test"
+                  valueFieldRef={this.valueFieldRef}
+                  varianceFieldRef={this.varianceFieldRef}
                 />
               ) : (
                 <div>Wybierz stację...</div>

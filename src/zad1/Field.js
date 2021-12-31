@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Field(props) {
-  var onLocalChange = () => {};
+  //var onLocalChange = () => {};
 
   var readOnly = "editable" in props ? !props.editable : true;
 
