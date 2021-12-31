@@ -4,7 +4,7 @@ export default function Field(props) {
   // useState()
   // const [value, setValue] = useState(props.value);
 
-  var onLocalChange = () => {};
+  // var onLocalChange = () => {};
 
   var readOnly = "editable" in props ? !props.editable : true;
 
@@ -14,8 +14,9 @@ export default function Field(props) {
       <span>
         <input
           type="text"
+          ref={props.fieldRef}
           readOnly={readOnly}
-          value={props.value}
+          //value={props.value}
           onChange={props.onChange}
           id={props.id}
           className={props.className || "normalValue"}

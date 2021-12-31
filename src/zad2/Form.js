@@ -9,6 +9,9 @@ export class Form2 extends React.Component {
     this.state = {
       selected: undefined
     };
+    this.idFieldRef = React.createRef();
+    this.dateFieldRef = React.createRef();
+    this.expectedFieldRef = React.createRef();
   }
 
   selected = (e) => {
@@ -21,10 +24,24 @@ export class Form2 extends React.Component {
         break;
       }
     }
+
+    //selected.idFieldRef.current.value = "test";
     this.setState({
       selected: selected
     });
+
+    //metoda forceupdate
+    this.forceUpdate(() => {
+      let s = this.state.selected;
+      this.idFieldRef.current.value = s.name;
+      this.dateFieldRef.current.value = s.date;
+      this.expectedFieldRef.current.value = s.expected;
+    });
   };
+
+  // componentDidMount(){
+  //   this.idFieldRef.current.value = "test";
+  // }
 
   onChangedValue = (station, v) => {
     if (this.state.selected && this.state.selected.id === station.id) {
@@ -39,6 +56,7 @@ export class Form2 extends React.Component {
     }
   };
 
+  componentDidUpdate() {}
   /* Droga Reacta...*/
   // componentDidUpdate() {
   //   // this.updateColor();
@@ -81,6 +99,10 @@ export class Form2 extends React.Component {
                 <Station
                   station={this.state.selected}
                   onChangedValue={this.onChangedValue}
+                  idFieldRef={this.idFieldRef}
+                  dateFieldRef={this.dateFieldRef}
+                  expectedFieldRef={this.expectedFieldRef}
+                  label="test"
                 />
               ) : (
                 <div>Wybierz stację...</div>
